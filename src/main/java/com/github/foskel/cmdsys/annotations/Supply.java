@@ -8,4 +8,7 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface Supply {
+    String NO_ID = "";
+
+    String id() default NO_ID;
 }

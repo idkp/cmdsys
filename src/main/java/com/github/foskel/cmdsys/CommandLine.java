@@ -127,6 +127,12 @@ public class CommandLine {
             return this;
         }
 
+        public <T> Builder addArgumentMapping(Class<? extends T> type, String id, Supplier<T> instanceSupplier) {
+            this.argumentMapper.registerMapping(type, id, instanceSupplier);
+
+            return this;
+        }
+
         public Builder withLogger(CommandLogger logger) {
             this.logger = logger;
 

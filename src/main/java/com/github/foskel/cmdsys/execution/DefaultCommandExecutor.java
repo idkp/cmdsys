@@ -53,7 +53,9 @@ public final class DefaultCommandExecutor implements CommandExecutor {
             Supply supplyAnnotation = field.getAnnotation(Supply.class);
 
             if (supplyAnnotation != null) {
-                Object mappedValue = argumentMapper.getMapping(field.getType());
+                Object mappedValue = supplyAnnotation.id().equals(Supply.NO_ID)
+                        ? argumentMapper.getMapping(field.getType())
+                        : argumentMapper.getMapping(field.getType(), supplyAnnotation.id());
 
                 if (mappedValue != null) {
                     field.setAccessible(true);
