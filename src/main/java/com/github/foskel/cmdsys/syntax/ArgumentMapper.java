@@ -40,13 +40,18 @@ public final class ArgumentMapper {
         }
 
         @Override
-        public boolean equals(Object obj) {
-            if (!(obj instanceof TypeKeyData)) {
-                return false;
-            }
+        public int hashCode() {
+            return 31 * (31 + type.hashCode()) + (id == null ? 0 : id.hashCode());
+        }
 
+        @Override
+        public boolean equals(Object obj) {
             if (obj == this) {
                 return true;
+            }
+
+            if (!(obj instanceof TypeKeyData)) {
+                return false;
             }
 
             TypeKeyData other = (TypeKeyData) obj;
