@@ -42,7 +42,9 @@ public final class ArrayParameterParser implements ParameterParser {
 
     @Override
     public boolean canParse(Class<?> type) {
-        return registry.findParser(type) != null;
+        Class<?> componentType = type.getComponentType();
+
+        return componentType != null && registry.findParser(componentType) != null;
 
         /*
         return new Class[]{
