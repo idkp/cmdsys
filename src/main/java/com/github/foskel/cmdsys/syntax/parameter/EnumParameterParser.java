@@ -16,7 +16,7 @@ public final class EnumParameterParser implements ParameterParser {
     }
 
     @Override
-    public Class[] getParameterTypes() {
-        return new Class[]{Enum.class};
+    public boolean canParse(Class<?> type) {
+        return type.isEnum();
     }
 }

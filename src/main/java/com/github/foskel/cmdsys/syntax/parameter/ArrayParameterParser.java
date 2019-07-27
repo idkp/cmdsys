@@ -41,8 +41,8 @@ public final class ArrayParameterParser implements ParameterParser {
     }
 
     @Override
-    public Class[] getParameterTypes() {
-        return registry.getSupportedArrayTypes();
+    public boolean canParse(Class<?> type) {
+        return registry.findParser(type) != null;
 
         /*
         return new Class[]{

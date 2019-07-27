@@ -172,19 +172,19 @@ public final class DefaultCommandExecutor implements CommandExecutor {
         Field field = fieldData.field;
 
         for (ParameterParser parameterParser : parameterParsers) {
-            for (Class<?> type : parameterParser.getParameterTypes()) {
-                if (type == field.getType()) {
-                    Object paramValue = parameterParser.parse(param, type);
+            Class<?> type = field.getType();
 
-                    fieldData.oldValue = field.get(commandRef);
-                    field.set(commandRef, paramValue);
-                }
+            if (parameterParser.canParse(type)) {
+                Object paramValue = parameterParser.parse(param, type);
+
+                fieldData.oldValue = field.get(commandRef);
+                field.set(commandRef, paramValue);
             }
         }
     }
 
     private static boolean isFlag(String param, FlagData flagData) {
-        return (flagData.shortOpt != null && param.equals(flagData.shortOpt)) || (flagData.longOpt != null && param.equals(flagData.longOpt));
+        return (param.equals(flagData.shortOpt)) || (param.equals(flagData.longOpt));
     }
 
     private static class FlagData extends FieldData {

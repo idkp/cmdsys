@@ -8,7 +8,7 @@ public final class CharSequenceParameterParser implements ParameterParser {
     }
 
     @Override
-    public Class[] getParameterTypes() {
-        return new Class[]{Character.TYPE, Character.class, String.class};
+    public boolean canParse(Class<?> type) {
+        return type == Character.TYPE || type == Character.class || type == String.class;
     }
 }

@@ -21,7 +21,7 @@ public final class BooleanParameterParser implements ParameterParser {
     }
 
     @Override
-    public Class[] getParameterTypes() {
-        return new Class[]{Boolean.TYPE, Boolean.class};
+    public boolean canParse(Class<?> type) {
+        return type == Boolean.TYPE || type == Boolean.class;
     }
 }

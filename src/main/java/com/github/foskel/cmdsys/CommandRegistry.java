@@ -23,10 +23,6 @@ public interface CommandRegistry {
 
     ParameterParser findParser(Class<?> type);
 
-    List<Class> getAllSupportedParameterTypes();
-
-    Class[] getSupportedArrayTypes();
-
     List<ParameterParser> getParameterParsers();
 
     void clear();

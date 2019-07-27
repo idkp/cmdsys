@@ -2,8 +2,10 @@ package com.github.foskel.cmdsys;
 
 import com.github.foskel.cmdsys.syntax.parameter.ParameterParser;
 
-import java.lang.reflect.Array;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public final class SimpleCommandRegistry implements CommandRegistry {
     private final Map<Class<?>, CommandModel> commands = new HashMap<>();
@@ -54,9 +56,9 @@ public final class SimpleCommandRegistry implements CommandRegistry {
 
     @Override
     public boolean registerParser(ParameterParser parser, boolean updateAllTypes) {
-        if (updateAllTypes) {
+        /*if (updateAllTypes) {
             updateAllParamTypes();
-        }
+        }*/
 
         return this.parameterParsers.add(parser);
     }
@@ -74,16 +76,15 @@ public final class SimpleCommandRegistry implements CommandRegistry {
     @Override
     public ParameterParser findParser(Class<?> type) {
         for (ParameterParser parser : parameterParsers) {
-            for (Class<?> supportedType : parser.getParameterTypes()) {
-                if (supportedType == type) {
-                    return parser;
-                }
+            if (parser.canParse(type)) {
+                return parser;
             }
         }
 
         return null;
     }
 
+    /*
     @Override
     public List<Class> getAllSupportedParameterTypes() {
         if (allParamTypes.isEmpty()) {
@@ -110,7 +111,7 @@ public final class SimpleCommandRegistry implements CommandRegistry {
         for (int i = 0, l = allParamTypes.size(); i < l; i++) {
             arrayTypes[i] = Array.newInstance(allParamTypes.get(i), 0).getClass();
         }
-    }
+    }*/
 
     @Override
     public List<ParameterParser> getParameterParsers() {

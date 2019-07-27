@@ -37,12 +37,12 @@ public enum NumberParameterParser implements ParameterParser {
     }
 
     @Override
-    public Class[] getParameterTypes() {
-        return new Class[]{Integer.TYPE, Integer.class,
-                Double.TYPE, Double.class,
-                Float.TYPE, Float.class,
-                Long.TYPE, Long.class,
-                Byte.TYPE, Byte.class,
-                Short.TYPE, Short.class};
+    public boolean canParse(Class<?> type) {
+        return type == Integer.TYPE || type == Integer.class ||
+                type == Double.TYPE || type == Double.class ||
+                type == Float.TYPE || type == Float.class ||
+                type == Long.TYPE || type == Long.class ||
+                type == Byte.TYPE || type == Byte.class ||
+                type == Short.TYPE || type == Short.class;
     }
 }
