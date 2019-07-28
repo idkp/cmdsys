@@ -68,7 +68,7 @@ public class CommandLine {
         return this.executor.execute(syntaxScheme.getCommand(), syntaxScheme.getSelectedBranch(), syntaxScheme.getParameters());
     }
 
-	//TODO
+    //TODO
     public void runCommand(Sender sender, String input, BiConsumer<ParsedCommand, ExecutionResult> consumer) {
         ParsedCommand parsed = parseCommand(sender, input);
         String error = parsed.getErrorMessage();
